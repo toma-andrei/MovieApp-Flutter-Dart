@@ -5,27 +5,24 @@
 ///movies grouped by genre. */
 
 import 'package:flutter/material.dart';
+import './authentication/login_view.dart';
+import './authentication/register_view.dart';
 
 void main() {
   runApp(MovieApp());
-} // 1h 40min
+}
 
 class MovieApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(fontFamily: "Roboto", primarySwatch: Colors.deepPurple),
       home: Scaffold(
         appBar: AppBar(
-          title: Text("easy list"),
+          title: const Text("Movie App"),
         ),
-        body: Card(
-          child: Column(
-            children: <Widget>[
-              Text("Hello"),
-              Text("World"),
-            ],
-          ),
-        ),
+        body: LoginView(),
       ),
     );
   }
