@@ -5,8 +5,10 @@
 ///movies grouped by genre. */
 
 import 'package:flutter/material.dart';
-import './authentication/login_view.dart';
-import './authentication/register_view.dart';
+import 'package:movie_app/main_view.dart';
+import 'package:movie_app/movies/movie_list.dart';
+import 'authentication/login/login_view.dart';
+import 'authentication/register/register_view.dart';
 
 void main() {
   runApp(MovieApp());
@@ -17,13 +19,11 @@ class MovieApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(fontFamily: "Roboto", primarySwatch: Colors.deepPurple),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text("Movie App"),
-        ),
-        body: LoginView(),
+      theme: ThemeData(
+        primarySwatch: Colors.deepPurple,
       ),
+      title: 'Movie App',
+      home: MovieList(),
     );
   }
 }
