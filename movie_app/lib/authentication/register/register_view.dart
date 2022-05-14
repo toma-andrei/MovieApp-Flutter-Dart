@@ -184,7 +184,7 @@ class _RegisterViewState extends State<RegisterView> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => MovieList(),
+            builder: (context) => MovieListMain(),
           ),
         );
       } else {

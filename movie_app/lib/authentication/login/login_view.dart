@@ -3,6 +3,7 @@ import 'dart:convert';
 import "package:flutter/material.dart";
 import 'package:http/http.dart' as http;
 import '../../movies/movie_list.dart';
+import '../../movies/movie_list_page/movie_list_page.dart';
 
 class LoginView extends StatefulWidget {
   @override
@@ -178,7 +179,9 @@ _login(TextEditingController usernameController,
     if (jsonDecode(response.body)["message"] == "success") {
       Navigator.pop(context);
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => MovieList()));
+        context,
+        MaterialPageRoute(builder: (context) => MovieListMain()),
+      );
     } else {
       setReasonForLoginFail(jsonDecode(response.body)["message"]);
     }
