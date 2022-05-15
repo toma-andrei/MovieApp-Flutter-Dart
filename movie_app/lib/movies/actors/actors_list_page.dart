@@ -13,7 +13,6 @@ class ActorsListPage extends StatelessWidget {
   ActorsListPage(actors) {
     List<dynamic> dataList = jsonDecode(actors);
     this.actors = dataList;
-    print(this.actors);
   }
 
   @override
@@ -21,7 +20,7 @@ class ActorsListPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Center(
-          child: Text("All Movies"),
+          child: Text("Actors"),
         ),
       ),
       body: SingleChildScrollView(
@@ -39,10 +38,25 @@ class ActorsListPage extends StatelessWidget {
                       elevation: 10,
                     ),
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ActorPage(actor)));
+                      http
+                          .get(
+                        Uri.parse(
+                            'http://localhost:3000/movie/' + actor['name']),
+                      )
+                          .then((result) {
+                        List<String> movies = [];
+                        List<dynamic> dataList = jsonDecode(result.body);
+
+                        dataList.forEach((movie) {
+                          movies.add(movie['name']);
+                        });
+                        actor['movies'] = movies;
+
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ActorPage(actor)));
+                      });
                     },
                     child: _createCard(actor['name'], actor['birth_date']),
                   ),

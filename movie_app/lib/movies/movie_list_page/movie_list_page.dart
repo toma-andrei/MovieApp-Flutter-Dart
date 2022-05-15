@@ -18,7 +18,7 @@ class MovieListPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Center(
-          child: Text("All Movies"),
+          child: Text("Movies"),
         ),
       ),
       body: SingleChildScrollView(
