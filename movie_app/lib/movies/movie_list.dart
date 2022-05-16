@@ -8,6 +8,13 @@ import '../movies/actors/actors_list_page.dart';
 import '../movies/preferences/choose_pref.dart';
 
 class MovieListMain extends StatefulWidget {
+  Map<String, dynamic> userData = {};
+
+  MovieListMain(userData) {
+    this.userData = userData;
+    // print(this.userData);
+  }
+
   @override
   _MovieListState createState() => _MovieListState();
 }
@@ -43,10 +50,12 @@ class _MovieListState extends State<MovieListMain> {
       padding: EdgeInsets.only(top: 40),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-            primary: Color.fromARGB(0, 244, 241, 241), elevation: 0),
+            primary: Color.fromARGB(80, 231, 221, 221), elevation: 10),
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => Preferences()));
+              context,
+              MaterialPageRoute(
+                  builder: (context) => Preferences(widget.userData)));
         },
         child: Image(
           image: AssetImage("assets/cinema.png"),
@@ -84,7 +93,7 @@ class _MovieListState extends State<MovieListMain> {
           MaterialPageRoute(builder: (
             context,
           ) {
-            return MovieListPage(response.body);
+            return MovieListPage(response.body, false, widget.userData);
           }),
         );
       });
@@ -95,7 +104,7 @@ class _MovieListState extends State<MovieListMain> {
           MaterialPageRoute(builder: (
             context,
           ) {
-            return ActorsListPage(response.body);
+            return ActorListPage(response.body, false, widget.userData);
           }),
         );
       });
@@ -113,7 +122,8 @@ class _MovieListState extends State<MovieListMain> {
           MaterialPageRoute(builder: (
             context,
           ) {
-            return MovieListPage(jsonEncode(filteredMovies));
+            return MovieListPage(
+                jsonEncode(filteredMovies), false, widget.userData);
           }),
         );
       });
@@ -155,7 +165,8 @@ class _MovieListState extends State<MovieListMain> {
                     MaterialPageRoute(builder: (
                       context,
                     ) {
-                      return MovieListPage(jsonEncode(filteredMovies));
+                      return MovieListPage(
+                          jsonEncode(filteredMovies), false, widget.userData);
                     }),
                   );
                   /*              

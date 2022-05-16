@@ -178,17 +178,18 @@ class _RegisterViewState extends State<RegisterView> {
           "Accept": "application/json",
           "Content-Type": "application/json"
         }).then((response) {
-      var object = jsonDecode(response.body);
-      if (object["message"] == 'success') {
+      Map<String, dynamic> responseBody = jsonDecode(response.body);
+      print(responseBody);
+      if (responseBody["message"] == 'success') {
         Navigator.pop(context);
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => MovieListMain(),
+            builder: (context) => MovieListMain(responseBody['data']),
           ),
         );
       } else {
-        setReasonForRegisterFail(object["message"]);
+        setReasonForRegisterFail(responseBody["message"]);
       }
     });
   }

@@ -59,11 +59,8 @@ Widget _buttonRegister(BuildContext context) {
 
 Widget _title() {
   return Padding(
-    padding: EdgeInsets.only(top: 150.0, bottom: 120.0),
-    child: Text(
-      "Authenticate",
-      style: TextStyle(fontSize: 50, fontWeight: FontWeight.w700),
-    ),
+    padding: EdgeInsets.only(top: 140.0, bottom: 90.0),
+    child: Image.asset('assets/authentication.png', width: 200, height: 200),
   );
 }
 

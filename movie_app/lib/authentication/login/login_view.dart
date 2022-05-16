@@ -176,11 +176,14 @@ _login(TextEditingController usernameController,
     headers: requestHeaders,
   )
       .then((response) {
-    if (jsonDecode(response.body)["message"] == "success") {
+    Map<String, dynamic> responseBody = jsonDecode(response.body);
+
+    if (responseBody['message'] == "success") {
       Navigator.pop(context);
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => MovieListMain()),
+        MaterialPageRoute(
+            builder: (context) => MovieListMain(responseBody['data'])),
       );
     } else {
       setReasonForLoginFail(jsonDecode(response.body)["message"]);

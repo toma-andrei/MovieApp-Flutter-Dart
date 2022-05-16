@@ -23,7 +23,7 @@ class MovieApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
       ),
       title: 'Movie App',
-      home: MovieListMain(),
+      home: MainView(),
     );
   }
 }

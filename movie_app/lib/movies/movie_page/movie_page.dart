@@ -5,7 +5,13 @@ import 'package:http/http.dart' as http;
 
 class MoviePage extends StatelessWidget {
   var movie = {};
-  MoviePage(this.movie);
+  var userId = -1;
+
+  MoviePage(movie, userData) {
+    this.movie = movie;
+    this.userId = userData['id'];
+  }
+
   var show = false;
 
   @override
@@ -53,7 +59,7 @@ class MoviePage extends StatelessWidget {
               body: jsonEncode({
                 'id': id.toString(),
                 'type': 'movie',
-                'userId': '1',
+                'userId': userId,
               }),
               headers: {
                 "Accept": "application/json",
